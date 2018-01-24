@@ -3,6 +3,7 @@ import shutil
 import time
 import zipfile
 import sys
+import subprocess
 
 try: color = sys.stdout.shell
 except AttributeError: raise RuntimeError("Use Python 3 or newer")
@@ -18,7 +19,11 @@ if startscr == "help":
     print("For making folders writable , start up the system Terminal and type in:")
     print("Sudo CHMOD +X <Folder-Name>")
 elif startscr == "start":
+    
     OSC = input("macOS/Windows/Linux \n")
+    if OSC =="Win":
+            inspath = input()
+            subprocess.Popen('explorer "C:'+inspath+'"')
     if OSC =="Linux":
         print("you've choosen Linux")
         inspath = input("specify the target directory: ")
@@ -28,6 +33,7 @@ elif startscr == "start":
     if os.access(inspath, os.W_OK) is not True:
             print("Folder not writable, for a tutorial how to make it dumpable type in help when starting up the script")
     else :
+            os.system('start "C:\'' + inspath +'"')
             print("Folder writable! got full access to it")
             print("now you are able to run some commands ! type in 'help' for a full list !")
             navi = input()
